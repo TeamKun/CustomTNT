@@ -1,6 +1,5 @@
 package net.kunmc.lab.customtnt.tnt;
 
-import com.destroystokyo.paper.event.block.TNTPrimeEvent;
 import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.BlackHoleConfig;
 import org.bukkit.*;
@@ -24,8 +23,7 @@ public class BlackHoleTNT extends CustomTNT {
     }
 
     @Override
-    protected void onTNTPrime(TNTPrimeEvent e) {
-
+    protected void onTNTPrimed(TNTPrimed tnt) {
     }
 
     @Override

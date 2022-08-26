@@ -1,6 +1,5 @@
 package net.kunmc.lab.customtnt.tnt;
 
-import com.destroystokyo.paper.event.block.TNTPrimeEvent;
 import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.LightningConfig;
 import org.bukkit.Location;
@@ -18,7 +17,7 @@ public class LightningTNT extends CustomTNT {
     }
 
     @Override
-    protected void onTNTPrime(TNTPrimeEvent e) {
+    protected void onTNTPrimed(TNTPrimed tnt) {
     }
 
     @Override

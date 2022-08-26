@@ -1,6 +1,5 @@
 package net.kunmc.lab.customtnt;
 
-import com.destroystokyo.paper.event.block.TNTPrimeEvent;
 import net.kunmc.lab.commandlib.Nameable;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -34,22 +33,16 @@ public abstract class CustomTNT implements Listener, Nameable {
             }
 
             @EventHandler
-            public void onPrimedTNT(TNTPrimeEvent e) {
-                if (e.getBlock().hasMetadata(tabCompleteName())) {
-                    onTNTPrime(e);
-                    e.setCancelled(false);
-                }
-            }
-
-            @EventHandler
             public void onTNTPrimedSpawn(EntitySpawnEvent e) {
                 if (!(e.getEntity() instanceof TNTPrimed)) {
                     return;
                 }
+                TNTPrimed tnt = ((TNTPrimed) e.getEntity());
 
-                if (e.getLocation().getBlock().hasMetadata(tabCompleteName())) {
-                    e.getEntity().setMetadata(tabCompleteName(), e.getLocation().getBlock().getMetadata(tabCompleteName()).get(0));
-                    e.getLocation().getBlock().removeMetadata(tabCompleteName(), plugin);
+                if (tnt.getLocation().getBlock().hasMetadata(tabCompleteName())) {
+                    onTNTPrimed(tnt);
+                    tnt.setMetadata(tabCompleteName(), tnt.getLocation().getBlock().getMetadata(tabCompleteName()).get(0));
+                    tnt.getLocation().getBlock().removeMetadata(tabCompleteName(), plugin);
                 }
             }
 
@@ -81,7 +74,7 @@ public abstract class CustomTNT implements Listener, Nameable {
         return Component.text(tabCompleteName().toUpperCase() + " TNT");
     }
 
-    protected abstract void onTNTPrime(TNTPrimeEvent e);
+    protected abstract void onTNTPrimed(TNTPrimed tnt);
 
     protected abstract void onExplosionPrime(TNTPrimed tnt);
 
