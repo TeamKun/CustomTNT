@@ -2,6 +2,7 @@ package net.kunmc.lab.customtnt.tnt;
 
 import com.destroystokyo.paper.event.block.TNTPrimeEvent;
 import net.kunmc.lab.customtnt.CustomTNT;
+import net.kunmc.lab.customtnt.config.BlackHoleConfig;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
@@ -15,8 +16,11 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BlackHoleTNT extends CustomTNT {
-    public BlackHoleTNT(Plugin plugin) {
+    private final BlackHoleConfig config;
+
+    public BlackHoleTNT(Plugin plugin, BlackHoleConfig config) {
         super(plugin);
+        this.config = config;
     }
 
     @Override
@@ -28,7 +32,7 @@ public class BlackHoleTNT extends CustomTNT {
     protected void onExplosionPrime(TNTPrimed tnt) {
         Location center = tnt.getLocation();
         World world = center.getWorld();
-        int totalTick = 120;
+        int totalTick = config.duration.value();
 
         new BukkitRunnable() {
             private int tick = 0;
@@ -51,12 +55,12 @@ public class BlackHoleTNT extends CustomTNT {
 
             @Override
             public void run() {
-                int radius = 7;
-                sphereAround(center, 5).forEach(x -> {
+                int radius = config.radius.value();
+                sphereAround(center, config.radius.value()).forEach(x -> {
                     if (x.isEmpty()) {
                         return;
                     }
-                    if (random.nextDouble() <= 0.1) {
+                    if (random.nextDouble() <= config.involveBlocksProbability.value()) {
                         FallingBlock fallingBlock = world.spawnFallingBlock(x.getLocation(), x.getBlockData());
                         fallingBlock.setGravity(false);
                         fallingBlock.setInvulnerable(true);
@@ -94,7 +98,7 @@ public class BlackHoleTNT extends CustomTNT {
                     sub.multiply(0.35 / sub.length());
                     x.setVelocity(sub);
                     if (x instanceof LivingEntity) {
-                        ((LivingEntity) x).damage(0.3);
+                        ((LivingEntity) x).damage(config.damage.value());
                     }
                 });
 

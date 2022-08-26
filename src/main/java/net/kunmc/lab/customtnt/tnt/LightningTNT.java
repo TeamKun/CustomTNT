@@ -2,6 +2,7 @@ package net.kunmc.lab.customtnt.tnt;
 
 import com.destroystokyo.paper.event.block.TNTPrimeEvent;
 import net.kunmc.lab.customtnt.CustomTNT;
+import net.kunmc.lab.customtnt.config.LightningConfig;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.TNTPrimed;
@@ -9,8 +10,11 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class LightningTNT extends CustomTNT {
-    public LightningTNT(Plugin plugin) {
+    private final LightningConfig config;
+
+    public LightningTNT(Plugin plugin, LightningConfig config) {
         super(plugin);
+        this.config = config;
     }
 
     @Override
@@ -28,7 +32,7 @@ public class LightningTNT extends CustomTNT {
         world.strikeLightning(loc);
 
         new BukkitRunnable() {
-            private double radius = 2.5;
+            private double radius = config.increasingRadius.value();
             private int count = 0;
 
             @Override
@@ -43,9 +47,9 @@ public class LightningTNT extends CustomTNT {
                     world.strikeLightning(loc);
                 }
 
-                radius += 2.5;
+                radius += config.increasingRadius.value();
                 count++;
-                if (count == 3) {
+                if (count == config.times.value() - 1) {
                     cancel();
                 }
             }
