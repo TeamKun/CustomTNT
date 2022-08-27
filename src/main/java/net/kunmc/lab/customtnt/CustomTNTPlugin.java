@@ -11,6 +11,7 @@ import net.minecraft.server.v1_16_R3.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.lang.reflect.Field;
 
@@ -46,6 +47,13 @@ public final class CustomTNTPlugin extends JavaPlugin {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                summonEnderDragonConfig.changeEnderDragonDestination(summonEnderDragonConfig.enderDragonBaseLocation.value());
+            }
+        }.runTaskLater(this, 4);
     }
 
     @Override

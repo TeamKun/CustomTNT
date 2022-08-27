@@ -13,14 +13,21 @@ import org.jetbrains.annotations.NotNull;
 public class SummonEnderDragonConfig extends BaseConfig {
     public final IntegerValue quantity = new IntegerValue(3);
     public final VectorValue enderDragonBaseLocation = new VectorValue(new Vector(0, 0, 0))
-            .onModify(x -> {
-                BlockPosition pos = WorldGenEndTrophy.a;
-                pos.setX(x.getBlockX());
-                pos.setZ(x.getBlockZ());
-            });
+            .onModify(this::changeEnderDragonDestination);
     public final BooleanValue changeBaseLocationOnExplosion = new BooleanValue(true);
 
     public SummonEnderDragonConfig(@NotNull Plugin plugin) {
         super(plugin);
+    }
+
+    @Override
+    public void saveConfigIfPresent() {
+        super.saveConfigIfPresent();
+    }
+
+    public void changeEnderDragonDestination(Vector v) {
+        BlockPosition pos = WorldGenEndTrophy.a;
+        pos.setX(v.getBlockX());
+        pos.setZ(v.getBlockZ());
     }
 }

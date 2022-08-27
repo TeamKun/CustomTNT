@@ -2,10 +2,8 @@ package net.kunmc.lab.customtnt.tnt;
 
 import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.SummonEnderDragonConfig;
-import net.minecraft.server.v1_16_R3.BlockPosition;
 import net.minecraft.server.v1_16_R3.DragonControllerPhase;
 import net.minecraft.server.v1_16_R3.EntityEnderDragon;
-import net.minecraft.server.v1_16_R3.WorldGenEndTrophy;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEnderDragon;
 import org.bukkit.entity.EntityType;
@@ -29,10 +27,9 @@ public class SummonEnderDragonTNT extends CustomTNT {
     protected void onExplosionPrime(TNTPrimed tnt) {
         config.changeBaseLocationOnExplosion.ifTrue(() -> {
             Location loc = tnt.getLocation();
-            BlockPosition pos = WorldGenEndTrophy.a;
-            pos.setX(loc.getBlockX());
-            pos.setZ(loc.getBlockZ());
+            config.changeEnderDragonDestination(tnt.getLocation().toVector());
             config.enderDragonBaseLocation.value(loc.toVector());
+            config.saveConfigIfPresent();
         });
 
         for (int i = 0; i < config.quantity.value(); i++) {
