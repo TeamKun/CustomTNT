@@ -11,6 +11,7 @@ public class BlackHoleConfig extends BaseConfig {
     public final IntegerValue radius = new IntegerValue(7);
     public final DoubleValue involveBlocksProbability = new DoubleValue(0.1);
     public final DoubleValue damage = new DoubleValue(0.3);
+    public final IntegerValue limitOfBlocks = new IntegerValue(150);
 
     public BlackHoleConfig(@NotNull Plugin plugin) {
         super(plugin);

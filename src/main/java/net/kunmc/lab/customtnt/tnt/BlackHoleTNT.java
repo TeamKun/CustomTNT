@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class BlackHoleTNT extends CustomTNT {
     private final BlackHoleConfig config;
@@ -58,6 +60,7 @@ public class BlackHoleTNT extends CustomTNT {
                     if (x.isEmpty()) {
                         return;
                     }
+
                     if (random.nextDouble() <= config.involveBlocksProbability.value()) {
                         FallingBlock fallingBlock = world.spawnFallingBlock(x.getLocation(), x.getBlockData());
                         fallingBlock.setGravity(false);
@@ -66,6 +69,17 @@ public class BlackHoleTNT extends CustomTNT {
                         x.setType(Material.AIR);
                     }
                 });
+
+                AtomicInteger n = new AtomicInteger();
+                long reduceQuantity = involvedEntities.stream().filter(x -> x instanceof FallingBlock).count() - config.limitOfBlocks.value();
+                synchronized (involvedEntities) {
+                    involvedEntities.stream()
+                            .filter(x -> x instanceof FallingBlock)
+                            .filter(x -> n.getAndAdd(1) < reduceQuantity)
+                            .peek(Entity::remove)
+                            .collect(Collectors.toList())
+                            .forEach(involvedEntities::remove);
+                }
 
                 Bukkit.selectEntities(Bukkit.getConsoleSender(), "@e").stream()
                         .filter(x -> x.getLocation().getWorld().equals(center.getWorld()))
