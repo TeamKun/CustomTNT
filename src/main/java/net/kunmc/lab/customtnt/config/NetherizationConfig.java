@@ -13,7 +13,8 @@ import java.util.HashMap;
 
 public class NetherizationConfig extends BaseConfig {
     public final DoubleValue radius = new DoubleValue(10.0);
-    public final Enum2EnumMapValue<Material, Material> convertTable = new Enum2EnumMapValue<>(Material.class, Material.class);
+    public final Enum2EnumMapValue<Material, Material> convertTable = new Enum2EnumMapValue<>(Material.class, Material.class)
+            .listable(false);
     public final IntegerValue replacePerTick = new IntegerValue(300);
     public final StringValue displayName = new StringValue("");
 
