@@ -18,6 +18,9 @@ public class SummonEnderDragonConfig extends BaseConfig {
 
     public SummonEnderDragonConfig(@NotNull Plugin plugin) {
         super(plugin);
+        onInitialize(() -> {
+            changeEnderDragonDestination(enderDragonBaseLocation.value());
+        });
     }
 
     @Override
@@ -25,7 +28,7 @@ public class SummonEnderDragonConfig extends BaseConfig {
         super.saveConfigIfPresent();
     }
 
-    public void changeEnderDragonDestination(Vector v) {
+    private void changeEnderDragonDestination(Vector v) {
         BlockPosition pos = WorldGenEndTrophy.a;
         pos.setX(v.getBlockX());
         pos.setZ(v.getBlockZ());

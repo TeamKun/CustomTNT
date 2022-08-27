@@ -4,7 +4,6 @@ import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.SummonEnderDragonConfig;
 import net.minecraft.server.v1_16_R3.DragonControllerPhase;
 import net.minecraft.server.v1_16_R3.EntityEnderDragon;
-import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEnderDragon;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
@@ -26,9 +25,7 @@ public class SummonEnderDragonTNT extends CustomTNT {
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
         config.changeBaseLocationOnExplosion.ifTrue(() -> {
-            Location loc = tnt.getLocation();
-            config.changeEnderDragonDestination(tnt.getLocation().toVector());
-            config.enderDragonBaseLocation.value(loc.toVector());
+            config.enderDragonBaseLocation.setValueWithEvent(tnt.getLocation().toVector());
             config.saveConfigIfPresent();
         });
 
