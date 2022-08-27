@@ -9,6 +9,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
@@ -29,6 +30,13 @@ public abstract class CustomTNT implements Listener, Nameable {
                 ItemStack item = e.getItemInHand();
                 if (isThisTNTItem(item)) {
                     e.getBlock().setMetadata(tabCompleteName(), new FixedMetadataValue(plugin, ""));
+                }
+            }
+
+            @EventHandler
+            public void onBreakTNT(BlockBreakEvent e) {
+                if (e.getBlock().hasMetadata(tabCompleteName())) {
+                    e.getBlock().removeMetadata(tabCompleteName(), plugin);
                 }
             }
 
