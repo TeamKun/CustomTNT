@@ -1,24 +1,24 @@
 package net.kunmc.lab.customtnt.tnt;
 
 import net.kunmc.lab.customtnt.CustomTNT;
-import net.kunmc.lab.customtnt.config.SandFireworksConfig;
+import net.kunmc.lab.customtnt.config.MeteoriteConfig;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.TNTPrimed;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SandFireWorksTNT extends CustomTNT {
-    private final SandFireworksConfig config;
+public class MeteoriteTNT extends CustomTNT {
+    private final MeteoriteConfig config;
     private final ThreadLocalRandom random = ThreadLocalRandom.current();
 
-    public SandFireWorksTNT(Plugin plugin, SandFireworksConfig config) {
+    public MeteoriteTNT(Plugin plugin, MeteoriteConfig config) {
         super(plugin);
         this.config = config;
     }
@@ -58,39 +58,30 @@ public class SandFireWorksTNT extends CustomTNT {
 
             @Override
             public void run() {
-                for (int i = 0; i < summonPerTime && totalSummoned <= config.sandQuantity.value(); i++, totalSummoned++) {
-                    FallingBlock fallingBlock = world.spawnFallingBlock(origin, Material.SAND.createBlockData());
-                    Vector velocity = new Vector(random.nextDouble(2.0) - 1.0, 0, random.nextDouble(2.0) - 1.0)
-                            .normalize()
-                            .multiply(randomVelocity());
-                    fallingBlock.setVelocity(velocity);
-
-                    new BukkitRunnable() {
-                        @Override
-                        public void run() {
-                            Block under = fallingBlock.getLocation().subtract(0, 0.8, 0).getBlock();
-                            if (!under.isEmpty()) {
-                                fallingBlock.remove();
-                                world.createExplosion(fallingBlock.getLocation(), config.explosionPower.value());
-                                cancel();
-                            }
-                        }
-                    }.runTaskTimer(plugin, 0, 4);
+                for (int i = 0; i < summonPerTime && totalSummoned <= config.meteoriteQuantity.value(); i++, totalSummoned++) {
+                    world.spawnEntity(randomizeLocation(origin), EntityType.FIREBALL, CreatureSpawnEvent.SpawnReason.CUSTOM, x -> {
+                        Fireball fireball = ((Fireball) x);
+                        fireball.setDirection(new Vector(0, -1, 0));
+                        fireball.setVelocity(new Vector(0, -config.fallSpeed.value(), 0));
+                        fireball.setYield(config.explosionPower.value());
+                    });
                 }
 
-                if (totalSummoned > config.sandQuantity.value()) {
+                if (totalSummoned > config.meteoriteQuantity.value()) {
                     cancel();
                 }
             }
         }.runTaskTimer(plugin, 0, 2);
     }
 
-    private double randomVelocity() {
-        return random.nextDouble(config.initialVelocityRange.getRight() - config.initialVelocityRange.getLeft()) + config.initialVelocityRange.getLeft();
+    private Location randomizeLocation(Location origin) {
+        double x = random.nextDouble(config.maxRadius.multiply(2)) - config.maxRadius.value();
+        double z = random.nextDouble(config.maxRadius.multiply(2)) - config.maxRadius.value();
+        return origin.clone().add(x, 0, z);
     }
 
     @Override
     public String tabCompleteName() {
-        return "sandFireWorks";
+        return "meteorite";
     }
 }
