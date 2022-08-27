@@ -12,7 +12,13 @@ import net.kunmc.lab.customtnt.tnt.BlackHoleTNT;
 import net.kunmc.lab.customtnt.tnt.LightningTNT;
 import net.kunmc.lab.customtnt.tnt.MeteoriteTNT;
 import net.kunmc.lab.customtnt.tnt.SandFireWorksTNT;
+import net.minecraft.server.v1_16_R3.DedicatedServer;
+import net.minecraft.server.v1_16_R3.MinecraftServer;
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.lang.reflect.Field;
 
 public final class CustomTNTPlugin extends JavaPlugin {
     @Override
@@ -34,6 +40,15 @@ public final class CustomTNTPlugin extends JavaPlugin {
                 .addConfig(meteoriteConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
+
+        try {
+            DedicatedServer server = ((CraftServer) Bukkit.getServer()).getServer();
+            Field f = MinecraftServer.class.getDeclaredField("allowFlight");
+            f.setAccessible(true);
+            f.set(server, true);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
