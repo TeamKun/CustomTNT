@@ -127,7 +127,7 @@ public class BlackHoleTNT extends CustomTNT {
 
     @Override
     public String tabCompleteName() {
-        return "blockHole";
+        return "blackHole";
     }
 
     private static Set<Block> sphereAround(Location location, int radius) {
