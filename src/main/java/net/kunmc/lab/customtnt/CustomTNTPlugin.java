@@ -22,6 +22,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         SandFireworksConfig sandFireworksConfig = new SandFireworksConfig(this);
         MeteoriteConfig meteoriteConfig = new MeteoriteConfig(this);
         SummonEnderDragonConfig summonEnderDragonConfig = new SummonEnderDragonConfig(this);
+        NetherizationConfig netherizationConfig = new NetherizationConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -29,12 +30,14 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new SandFireWorksTNT(this, sandFireworksConfig));
         registry.register(new MeteoriteTNT(this, meteoriteConfig));
         registry.register(new SummonEnderDragonTNT(this, summonEnderDragonConfig));
+        registry.register(new NetherizationTNT(this, netherizationConfig));
 
         ConfigCommand configCommand = new ConfigCommandBuilder(lightningConfig)
                 .addConfig(blackHoleConfig)
                 .addConfig(sandFireworksConfig)
                 .addConfig(meteoriteConfig)
                 .addConfig(summonEnderDragonConfig)
+                .addConfig(netherizationConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
 

@@ -2,8 +2,8 @@ package net.kunmc.lab.customtnt.tnt;
 
 import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.BlackHoleConfig;
+import net.kunmc.lab.customtnt.util.Util;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -56,7 +56,7 @@ public class BlackHoleTNT extends CustomTNT {
             @Override
             public void run() {
                 int radius = config.radius.value();
-                sphereAround(center, config.radius.value()).forEach(x -> {
+                Util.sphereAround(center, config.radius.value()).forEach(x -> {
                     if (x.isEmpty()) {
                         return;
                     }
@@ -128,21 +128,5 @@ public class BlackHoleTNT extends CustomTNT {
     @Override
     public String tabCompleteName() {
         return "blackHole";
-    }
-
-    private static Set<Block> sphereAround(Location location, int radius) {
-        Set<Block> sphere = new HashSet<>();
-        Block center = location.getBlock();
-        for (int x = -radius; x <= radius; x++) {
-            for (int y = -radius; y <= radius; y++) {
-                for (int z = -radius; z <= radius; z++) {
-                    Block b = center.getRelative(x, y, z);
-                    if (center.getLocation().distance(b.getLocation()) <= radius) {
-                        sphere.add(b);
-                    }
-                }
-            }
-        }
-        return sphere;
     }
 }
