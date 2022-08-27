@@ -17,6 +17,11 @@ public class LightningTNT extends CustomTNT {
     }
 
     @Override
+    public String displayName() {
+        return config.displayName.value();
+    }
+
+    @Override
     protected void onTNTPrimed(TNTPrimed tnt) {
     }
 

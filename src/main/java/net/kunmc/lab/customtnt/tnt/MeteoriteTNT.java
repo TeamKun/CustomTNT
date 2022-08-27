@@ -24,6 +24,11 @@ public class MeteoriteTNT extends CustomTNT {
     }
 
     @Override
+    public String displayName() {
+        return config.displayName.value();
+    }
+
+    @Override
     protected void onTNTPrimed(TNTPrimed tnt) {
         tnt.setGravity(false);
 

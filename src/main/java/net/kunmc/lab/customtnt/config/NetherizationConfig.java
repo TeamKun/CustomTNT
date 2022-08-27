@@ -3,6 +3,7 @@ package net.kunmc.lab.customtnt.config;
 import net.kunmc.lab.configlib.BaseConfig;
 import net.kunmc.lab.configlib.value.DoubleValue;
 import net.kunmc.lab.configlib.value.IntegerValue;
+import net.kunmc.lab.configlib.value.StringValue;
 import net.kunmc.lab.configlib.value.map.Enum2EnumMapValue;
 import org.bukkit.Material;
 import org.bukkit.plugin.Plugin;
@@ -14,6 +15,7 @@ public class NetherizationConfig extends BaseConfig {
     public final DoubleValue radius = new DoubleValue(10.0);
     public final Enum2EnumMapValue<Material, Material> convertTable = new Enum2EnumMapValue<>(Material.class, Material.class);
     public final IntegerValue replacePerTick = new IntegerValue(300);
+    public final StringValue displayName = new StringValue("");
 
     public NetherizationConfig(@NotNull Plugin plugin) {
         super(plugin);

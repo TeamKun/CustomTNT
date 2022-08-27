@@ -107,7 +107,7 @@ public abstract class CustomTNT implements Listener, Nameable {
     public ItemStack getItem() {
         ItemStack item = new ItemStack(Material.TNT);
         item.editMeta(meta -> {
-            meta.displayName(displayName());
+            meta.displayName(itemName());
             meta.getPersistentDataContainer().set(NamespacedKey.fromString(tabCompleteName().toLowerCase()), PersistentDataType.STRING, "");
         });
 
@@ -118,9 +118,15 @@ public abstract class CustomTNT implements Listener, Nameable {
         return item.getItemMeta().getPersistentDataContainer().get(NamespacedKey.fromString(tabCompleteName().toLowerCase()), PersistentDataType.STRING) != null;
     }
 
-    public Component displayName() {
-        return Component.text(tabCompleteName().toUpperCase() + " TNT");
+    private Component itemName() {
+        String s = displayName();
+        if (s == null || s.isEmpty()) {
+            return Component.text(tabCompleteName().toUpperCase() + " TNT");
+        }
+        return Component.text(displayName());
     }
+
+    public abstract String displayName();
 
     protected abstract void onTNTPrimed(TNTPrimed tnt);
 
@@ -128,6 +134,6 @@ public abstract class CustomTNT implements Listener, Nameable {
 
     @Override
     public String toString() {
-        return ((TextComponent) displayName()).content();
+        return ((TextComponent) itemName()).content();
     }
 }
