@@ -10,6 +10,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.Dispenser;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -77,6 +78,10 @@ public abstract class CustomTNT implements Listener, Nameable {
             public void onBreakTNT(BlockBreakEvent e) {
                 if (e.getBlock().hasMetadata(tabCompleteName())) {
                     e.getBlock().removeMetadata(tabCompleteName(), plugin);
+                    e.setDropItems(false);
+                    e.getBlock().getWorld().spawnEntity(e.getBlock().getLocation(), EntityType.DROPPED_ITEM, CreatureSpawnEvent.SpawnReason.CUSTOM, x -> {
+                        ((Item) x).setItemStack(getItem());
+                    });
                 }
             }
 
