@@ -32,6 +32,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         KantasukeKakikamaVoiceConfig kantasukeKakikamaVoiceConfig = new KantasukeKakikamaVoiceConfig(this);
         KantasukeUrn1oVoiceConfig kantasukeUrn1oVoiceConfig = new KantasukeUrn1oVoiceConfig(this);
         ServerStopConfig serverStopConfig = new ServerStopConfig(this);
+        KoutanConfig koutanConfig = new KoutanConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -49,6 +50,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new KantasukeKakikamaVoiceTNT(this, kantasukeKakikamaVoiceConfig));
         registry.register(new KantasukeUrn1oVoiceTNT(this, kantasukeUrn1oVoiceConfig));
         registry.register(new ServerStopTNT(this, serverStopConfig));
+        registry.register(new KoutanTNT(this, koutanConfig));
 
         ConfigCommand configCommand = new ConfigCommandBuilder(lightningConfig)
                 .addConfig(blackHoleConfig)
@@ -65,6 +67,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
                 .addConfig(kantasukeKakikamaVoiceConfig)
                 .addConfig(kantasukeUrn1oVoiceConfig)
                 .addConfig(serverStopConfig)
+                .addConfig(koutanConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
 
