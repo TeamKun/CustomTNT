@@ -34,6 +34,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         ServerStopConfig serverStopConfig = new ServerStopConfig(this);
         KoutanConfig koutanConfig = new KoutanConfig(this);
         MickeyConfig mickeyConfig = new MickeyConfig(this);
+        KaikingConfig kaikingConfig = new KaikingConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -53,6 +54,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new ServerStopTNT(this, serverStopConfig));
         registry.register(new KoutanTNT(this, koutanConfig));
         registry.register(new MickeyTNT(this, mickeyConfig));
+        registry.register(new KaikingTNT(this, kaikingConfig));
 
         ConfigCommand configCommand = new ConfigCommandBuilder(lightningConfig)
                 .addConfig(blackHoleConfig)
@@ -71,6 +73,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
                 .addConfig(serverStopConfig)
                 .addConfig(koutanConfig)
                 .addConfig(mickeyConfig)
+                .addConfig(kaikingConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
 
