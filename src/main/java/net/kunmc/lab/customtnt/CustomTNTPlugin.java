@@ -27,6 +27,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         LGBTQConfig lgbtqConfig = new LGBTQConfig(this);
         FloatingIslandConfig floatingIslandConfig = new FloatingIslandConfig(this);
         RandomizeBlockConfig randomizeBlockConfig = new RandomizeBlockConfig(this);
+        SummonWitherConfig summonWitherConfig = new SummonWitherConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -39,6 +40,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new LGBTQTNT(this, lgbtqConfig));
         registry.register(new FloatingIslandTNT(this, floatingIslandConfig));
         registry.register(new RandomizeBlockTNT(this, randomizeBlockConfig));
+        registry.register(new SummonWitherTNT(this, summonWitherConfig));
 
         ConfigCommand configCommand = new ConfigCommandBuilder(lightningConfig)
                 .addConfig(blackHoleConfig)
@@ -50,6 +52,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
                 .addConfig(lgbtqConfig)
                 .addConfig(floatingIslandConfig)
                 .addConfig(randomizeBlockConfig)
+                .addConfig(summonWitherConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
 
