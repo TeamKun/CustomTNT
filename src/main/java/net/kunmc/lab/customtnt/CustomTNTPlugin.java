@@ -29,6 +29,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         RandomizeBlockConfig randomizeBlockConfig = new RandomizeBlockConfig(this);
         SummonWitherConfig summonWitherConfig = new SummonWitherConfig(this);
         SummonMobRandomlyConfig summonMobRandomlyConfig = new SummonMobRandomlyConfig(this);
+        KantasukeKakikamaVoiceConfig kantasukeKakikamaVoiceConfig = new KantasukeKakikamaVoiceConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -43,6 +44,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new RandomizeBlockTNT(this, randomizeBlockConfig));
         registry.register(new SummonWitherTNT(this, summonWitherConfig));
         registry.register(new SummonMobRandomlyTNT(this, summonMobRandomlyConfig));
+        registry.register(new KantasukeKakikamaVoiceTNT(this, kantasukeKakikamaVoiceConfig));
 
         ConfigCommand configCommand = new ConfigCommandBuilder(lightningConfig)
                 .addConfig(blackHoleConfig)
@@ -56,6 +58,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
                 .addConfig(randomizeBlockConfig)
                 .addConfig(summonWitherConfig)
                 .addConfig(summonMobRandomlyConfig)
+                .addConfig(kantasukeKakikamaVoiceConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
 
