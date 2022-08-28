@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Util {
-
     public static Set<Block> sphereAround(Location location, int radius) {
         Set<Block> sphere = new HashSet<>();
         Block center = location.getBlock();

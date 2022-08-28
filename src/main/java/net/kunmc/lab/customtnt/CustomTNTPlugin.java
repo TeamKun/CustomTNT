@@ -25,6 +25,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         NetherizationConfig netherizationConfig = new NetherizationConfig(this);
         FlameConfig flameConfig = new FlameConfig(this);
         LGBTQConfig lgbtqConfig = new LGBTQConfig(this);
+        FloatingIslandConfig floatingIslandConfig = new FloatingIslandConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -35,6 +36,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new NetherizationTNT(this, netherizationConfig));
         registry.register(new FlameTNT(this, flameConfig));
         registry.register(new LGBTQTNT(this, lgbtqConfig));
+        registry.register(new FloatingIslandTNT(this, floatingIslandConfig));
 
         ConfigCommand configCommand = new ConfigCommandBuilder(lightningConfig)
                 .addConfig(blackHoleConfig)
@@ -44,6 +46,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
                 .addConfig(netherizationConfig)
                 .addConfig(flameConfig)
                 .addConfig(lgbtqConfig)
+                .addConfig(floatingIslandConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
 
