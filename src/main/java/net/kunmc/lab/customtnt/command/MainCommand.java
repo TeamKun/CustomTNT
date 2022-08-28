@@ -6,6 +6,6 @@ import net.kunmc.lab.configlib.ConfigCommand;
 public class MainCommand extends Command {
     public MainCommand(ConfigCommand configCommand) {
         super("customtnt");
-        addChildren(new GiveCommand(), configCommand);
+        addChildren(new GiveCommand(), configCommand, new ResetSkinCommand());
     }
 }
