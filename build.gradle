@@ -23,10 +23,16 @@ repositories {
     }
     maven { url = "https://repo.dmulloy2.net/repository/public/" }
     maven { url = 'https://jitpack.io' }
+    maven {
+        name = "enginehub-maven"
+        url = "https://maven.enginehub.org/repo/"
+    }
     flatDir { dirs "server/cache", "libs" }
 }
 
 dependencies {
+    compileOnly "com.sk89q.worldedit:worldedit-bukkit:7.2.12-SNAPSHOT"
+    compileOnly "com.sk89q.worldedit:worldedit-core:7.2.12-SNAPSHOT"
     compileOnly "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"
     //compileOnly "com.comphenix.protocol:ProtocolLib:4.7.0"
     compileOnly name: "patched_1.16.5"
