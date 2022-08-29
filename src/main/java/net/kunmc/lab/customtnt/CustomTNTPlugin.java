@@ -31,12 +31,13 @@ public final class CustomTNTPlugin extends JavaPlugin {
         SummonMobRandomlyConfig summonMobRandomlyConfig = new SummonMobRandomlyConfig(this);
         KantasukeKakikamaVoiceConfig kantasukeKakikamaVoiceConfig = new KantasukeKakikamaVoiceConfig(this);
         KantasukeUrn1oVoiceConfig kantasukeUrn1oVoiceConfig = new KantasukeUrn1oVoiceConfig(this);
-        ServerStopConfig serverStopConfig = new ServerStopConfig(this);
+        KamesutaConfig serverStopConfig = new KamesutaConfig(this);
         KoutanConfig koutanConfig = new KoutanConfig(this);
         MickeyConfig mickeyConfig = new MickeyConfig(this);
         KaikingConfig kaikingConfig = new KaikingConfig(this);
         NagatukiConfig nagatukiConfig = new NagatukiConfig(this);
         TacowasaConfig tacowasaConfig = new TacowasaConfig(this);
+        HimazinConfig himazinConfig = new HimazinConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -53,7 +54,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new SummonMobRandomlyTNT(this, summonMobRandomlyConfig));
         registry.register(new KantasukeKakikamaVoiceTNT(this, kantasukeKakikamaVoiceConfig));
         registry.register(new KantasukeUrn1oVoiceTNT(this, kantasukeUrn1oVoiceConfig));
-        registry.register(new ServerStopTNT(this, serverStopConfig));
+        registry.register(new KamesutaTNT(this, serverStopConfig));
         registry.register(new KoutanTNT(this, koutanConfig));
         registry.register(new MickeyTNT(this, mickeyConfig));
         registry.register(new KaikingTNT(this, kaikingConfig));

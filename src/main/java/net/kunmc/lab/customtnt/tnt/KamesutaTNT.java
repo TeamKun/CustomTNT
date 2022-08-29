@@ -1,17 +1,19 @@
 package net.kunmc.lab.customtnt.tnt;
 
 import net.kunmc.lab.customtnt.CustomTNT;
-import net.kunmc.lab.customtnt.config.ServerStopConfig;
+import net.kunmc.lab.customtnt.config.KamesutaConfig;
+import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class ServerStopTNT extends CustomTNT {
-    private final ServerStopConfig config;
+public class KamesutaTNT extends CustomTNT {
+    private final KamesutaConfig config;
 
-    public ServerStopTNT(Plugin plugin, ServerStopConfig config) {
+    public KamesutaTNT(Plugin plugin, KamesutaConfig config) {
         super(plugin);
         this.config = config;
     }
@@ -27,22 +29,25 @@ public class ServerStopTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
-        String s = config.message.value();
-        if (s.isEmpty()) {
+        String message = config.message.value();
+        if (message.isEmpty()) {
             Bukkit.getServer().shutdown();
         } else {
-            Bukkit.broadcast(Component.text(s));
+            Bukkit.broadcast(Component.text(message));
+            Bukkit.getOnlinePlayers().forEach(x -> {
+                x.playSound(Sound.sound(NamespacedKey.fromString(config.soundName.value()), Sound.Source.AMBIENT, 1.0F, 1.0F));
+            });
             new BukkitRunnable() {
                 @Override
                 public void run() {
                     Bukkit.getServer().shutdown();
                 }
-            }.runTaskLater(plugin, 60);
+            }.runTaskLater(plugin, 40);
         }
     }
 
     @Override
     public String tabCompleteName() {
-        return "serverStop";
+        return "kamesuta";
     }
 }
