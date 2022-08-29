@@ -37,7 +37,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         KaikingConfig kaikingConfig = new KaikingConfig(this);
         NagatukiConfig nagatukiConfig = new NagatukiConfig(this);
         TacowasaConfig tacowasaConfig = new TacowasaConfig(this);
-        HimazinConfig himazinConfig = new HimazinConfig(this);
+        YaciConfig yaciConfig = new YaciConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -60,6 +60,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new KaikingTNT(this, kaikingConfig));
         registry.register(new NagatukiTNT(this, nagatukiConfig));
         registry.register(new TacowasaTNT(this, tacowasaConfig));
+        registry.register(new YaciTNT(this, yaciConfig));
 
         ConfigCommand configCommand = new ConfigCommandBuilder(lightningConfig)
                 .addConfig(blackHoleConfig)
@@ -81,6 +82,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
                 .addConfig(kaikingConfig)
                 .addConfig(nagatukiConfig)
                 .addConfig(tacowasaConfig)
+                .addConfig(yaciConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
 
