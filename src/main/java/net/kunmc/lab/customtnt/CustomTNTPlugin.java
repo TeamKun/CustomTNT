@@ -39,6 +39,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         TacowasaConfig tacowasaConfig = new TacowasaConfig(this);
         YaciConfig yaciConfig = new YaciConfig(this);
         HimazinConfig himazinConfig = new HimazinConfig(this);
+        HumanFireworksConfig humanFireworksConfig = new HumanFireworksConfig(this);
 
         CustomTNTRegistry registry = CustomTNTRegistry.getInstance();
         registry.register(new LightningTNT(this, lightningConfig));
@@ -63,6 +64,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
         registry.register(new TacowasaTNT(this, tacowasaConfig));
         registry.register(new YaciTNT(this, yaciConfig));
         registry.register(new HimazinTNT(this, himazinConfig));
+        registry.register(new HumanFireworksTNT(this, humanFireworksConfig));
 
         ConfigCommand configCommand = new ConfigCommandBuilder(lightningConfig)
                 .addConfig(blackHoleConfig)
@@ -86,6 +88,7 @@ public final class CustomTNTPlugin extends JavaPlugin {
                 .addConfig(tacowasaConfig)
                 .addConfig(yaciConfig)
                 .addConfig(himazinConfig)
+                .addConfig(humanFireworksConfig)
                 .build();
         CommandLib.register(this, new MainCommand(configCommand));
 
