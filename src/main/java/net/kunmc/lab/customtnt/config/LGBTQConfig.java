@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class LGBTQConfig extends BaseConfig {
     public final IntegerValue radius = new IntegerValue(10);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("ただしゃかTNT");
 
     public LGBTQConfig(@NotNull Plugin plugin) {
         super(plugin);

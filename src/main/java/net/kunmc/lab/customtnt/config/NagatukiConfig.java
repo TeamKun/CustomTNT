@@ -10,7 +10,7 @@ public class NagatukiConfig extends BaseConfig {
     public final StringValue nagatukiName = new StringValue("Nagatuki");
     public final FloatValue volume = new FloatValue(1.0F);
     public final FloatValue pitch = new FloatValue(1.0F);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("ながつきTNT");
 
     public NagatukiConfig(@NotNull Plugin plugin) {
         super(plugin);

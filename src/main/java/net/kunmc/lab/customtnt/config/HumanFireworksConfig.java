@@ -10,7 +10,7 @@ public class HumanFireworksConfig extends BaseConfig {
     public final DoubleValue radius = new DoubleValue(20.0);
     public final DoubleValue ascentSpeed = new DoubleValue(30.0);
     public final DoubleValue ascentAmount = new DoubleValue(36.0);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("人間花火TNT");
 
     public HumanFireworksConfig(@NotNull Plugin plugin) {
         super(plugin);

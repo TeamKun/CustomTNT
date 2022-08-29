@@ -10,7 +10,7 @@ public class KantasukeUrn1oVoiceConfig extends BaseConfig {
     public final StringValue soundName = new StringValue("kantasuke_urn1o");
     public final FloatValue volume = new FloatValue(1.0F);
     public final FloatValue pitch = new FloatValue(1.0F);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("例のアレ2TNT");
 
     public KantasukeUrn1oVoiceConfig(@NotNull Plugin plugin) {
         super(plugin);

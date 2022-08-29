@@ -18,7 +18,7 @@ public class SummonMobRandomlyConfig extends BaseConfig {
     public final EnumSetValue<EntityType> candidates = new EnumSetValue<EntityType>().listable(false);
     public final BooleanValue summonWither = new BooleanValue(false);
     public final BooleanValue summonEnderDragon = new BooleanValue(false);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("モブTNT");
 
     public SummonMobRandomlyConfig(@NotNull Plugin plugin) {
         super(plugin);

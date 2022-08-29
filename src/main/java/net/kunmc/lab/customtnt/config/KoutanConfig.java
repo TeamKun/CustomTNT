@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 public class KoutanConfig extends BaseConfig {
     public final IntegerValue radius = new IntegerValue(12);
     public final StringValue koutanName = new StringValue("GOD_koutan");
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("こうたんTNT");
 
     public KoutanConfig(@NotNull Plugin plugin) {
         super(plugin);

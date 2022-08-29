@@ -13,7 +13,7 @@ public class HimazinConfig extends BaseConfig {
     public final FloatValue volume = new FloatValue(1.0F);
     public final StringValue himazinName = new StringValue("ken_H1maz1n");
     public final StringListValue candidates = new StringListValue();
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("ひまじんTNT");
 
     public HimazinConfig(@NotNull Plugin plugin) {
         super(plugin);

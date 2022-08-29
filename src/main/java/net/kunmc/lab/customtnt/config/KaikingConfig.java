@@ -11,7 +11,7 @@ public class KaikingConfig extends BaseConfig {
     public final IntegerValue quantity = new IntegerValue(4);
     public final FloatValue volume = new FloatValue(0.5F);
     public final FloatValue pitch = new FloatValue(1.0F);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("カイキングTNT");
 
     public KaikingConfig(@NotNull Plugin plugin) {
         super(plugin);

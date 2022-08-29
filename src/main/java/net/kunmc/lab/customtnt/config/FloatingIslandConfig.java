@@ -10,7 +10,7 @@ public class FloatingIslandConfig extends BaseConfig {
     public final IntegerValue radius = new IntegerValue(8);
     public final IntegerValue replacePerTick = new IntegerValue(200);
     public final IntegerValue floatAmount = new IntegerValue(32);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("浮島TNT");
 
     public FloatingIslandConfig(@NotNull Plugin plugin) {
         super(plugin);

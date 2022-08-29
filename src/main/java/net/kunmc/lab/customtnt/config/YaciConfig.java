@@ -13,7 +13,7 @@ public class YaciConfig extends BaseConfig {
     public final IntegerValue summonQuantity = new IntegerValue(6);
     public final EnumValue<YaciTNT.Voice> greetingVoice = new EnumValue<>(YaciTNT.Voice.Yacidayo);
     public final StringValue yaciName = new StringValue("Yaci56");
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("やちTNT");
 
     public YaciConfig(@NotNull Plugin plugin) {
         super(plugin);

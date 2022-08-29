@@ -16,7 +16,7 @@ public class SummonEnderDragonConfig extends BaseConfig {
     public final VectorValue enderDragonBaseLocation = new VectorValue(new Vector(0, 0, 0))
             .onModify(this::changeEnderDragonDestination);
     public final BooleanValue changeBaseLocationOnExplosion = new BooleanValue(true);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("エンドラTNT");
 
     public SummonEnderDragonConfig(@NotNull Plugin plugin) {
         super(plugin);

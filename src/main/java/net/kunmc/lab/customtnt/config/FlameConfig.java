@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FlameConfig extends BaseConfig {
     public final IntegerValue radius = new IntegerValue(10);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("ヒスイ転生TNT");
 
     public FlameConfig(@NotNull Plugin plugin) {
         super(plugin);

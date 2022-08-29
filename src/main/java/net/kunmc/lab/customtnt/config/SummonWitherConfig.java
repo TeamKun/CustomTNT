@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SummonWitherConfig extends BaseConfig {
     public final IntegerValue quantity = new IntegerValue(3);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("ウィザーTNT");
 
     public SummonWitherConfig(@NotNull Plugin plugin) {
         super(plugin);

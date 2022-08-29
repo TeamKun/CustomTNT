@@ -16,7 +16,7 @@ public class NetherizationConfig extends BaseConfig {
     public final Enum2EnumMapValue<Material, Material> convertTable = new Enum2EnumMapValue<>(Material.class, Material.class)
             .listable(false);
     public final IntegerValue replacePerTick = new IntegerValue(300);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("ネザー化TNT");
 
     public NetherizationConfig(@NotNull Plugin plugin) {
         super(plugin);

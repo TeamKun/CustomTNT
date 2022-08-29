@@ -10,7 +10,7 @@ public class KantasukeKakikamaVoiceConfig extends BaseConfig {
     public final StringValue soundName = new StringValue("kantasuke_kakikama");
     public final FloatValue volume = new FloatValue(1.0F);
     public final FloatValue pitch = new FloatValue(1.0F);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("例のアレTNT");
 
     public KantasukeKakikamaVoiceConfig(@NotNull Plugin plugin) {
         super(plugin);

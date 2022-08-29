@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 public class RandomizeBlockConfig extends BaseConfig {
     public final IntegerValue radius = new IntegerValue(8);
     public final IntegerValue replacePerTick = new IntegerValue(250);
-    public final StringValue displayName = new StringValue("");
+    public final StringValue displayName = new StringValue("ブロックランダムTNT");
 
     public RandomizeBlockConfig(@NotNull Plugin plugin) {
         super(plugin);

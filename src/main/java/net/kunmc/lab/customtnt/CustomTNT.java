@@ -3,6 +3,7 @@ package net.kunmc.lab.customtnt;
 import net.kunmc.lab.commandlib.Nameable;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -126,9 +127,11 @@ public abstract class CustomTNT implements Listener, Nameable {
     private Component itemName() {
         String s = displayName();
         if (s == null || s.isEmpty()) {
-            return Component.text(tabCompleteName().toUpperCase() + " TNT");
+            return Component.text(tabCompleteName().toUpperCase() + " TNT")
+                    .decoration(TextDecoration.ITALIC, false);
         }
-        return Component.text(displayName());
+        return Component.text(displayName())
+                .decoration(TextDecoration.ITALIC, false);
     }
 
     public abstract String displayName();
