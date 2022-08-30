@@ -2,6 +2,7 @@ package net.kunmc.lab.customtnt.tnt;
 
 import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.KaikingConfig;
+import net.kyori.adventure.text.Component;
 import net.minecraft.server.v1_16_R3.EntityPigZombie;
 import net.minecraft.server.v1_16_R3.EnumItemSlot;
 import org.bukkit.Bukkit;
@@ -51,6 +52,7 @@ public class KaikingTNT extends CustomTNT {
                 pigZombie.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.3);
                 pigZombie.registerAttribute(Attribute.GENERIC_FOLLOW_RANGE);
                 pigZombie.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(128);
+                pigZombie.customName(Component.text("Kaiking"));
                 pigZombie.clearLootTable();
                 pigZombie.setInvisible(true);
                 EntityPigZombie entityPigZombie = ((CraftPigZombie) pigZombie).getHandle();
