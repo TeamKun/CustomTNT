@@ -42,7 +42,7 @@ dependencies {
     //compileOnly "com.comphenix.protocol:ProtocolLib:4.7.0"
     compileOnly name: "patched_1.16.5"
     implementation 'com.github.TeamKun.CommandLib:bukkit:0.6.0'
-    implementation 'com.github.TeamKun.ConfigLib:bukkit:0.13.3'
+    implementation 'com.github.TeamKun.ConfigLib:bukkit:0.13.4'
 }
 
 def targetJavaVersion = 8
