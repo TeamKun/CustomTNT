@@ -4,6 +4,7 @@ import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.NetherizationConfig;
 import net.kunmc.lab.customtnt.util.Util;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.plugin.Plugin;
@@ -31,6 +32,8 @@ public class NetherizationTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         List<Block> replaceTargets = Util.sphereAround(tnt.getLocation(), config.radius.intValue()).stream()
                 .filter(x -> config.convertTable.containsKey(x.getType()))
                 .collect(Collectors.toList());

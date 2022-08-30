@@ -38,6 +38,8 @@ public class HumanFireworksTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         Bukkit.getOnlinePlayers().stream()
                 .filter(x -> Math.abs(x.getLocation().distance(tnt.getLocation())) < config.radius.value())
                 .filter(x -> x.getGameMode() != GameMode.CREATIVE)

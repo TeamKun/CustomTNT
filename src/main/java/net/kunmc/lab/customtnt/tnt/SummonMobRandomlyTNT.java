@@ -2,6 +2,7 @@ package net.kunmc.lab.customtnt.tnt;
 
 import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.SummonMobRandomlyConfig;
+import org.bukkit.Sound;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
@@ -32,6 +33,8 @@ public class SummonMobRandomlyTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         List<EntityType> candidates = config.candidates.stream()
                 .filter(x -> x != EntityType.WITHER || config.summonWither.isTrue())
                 .filter(x -> x != EntityType.ENDER_DRAGON || config.summonEnderDragon.isTrue())

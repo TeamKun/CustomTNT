@@ -4,6 +4,7 @@ import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.FloatingIslandConfig;
 import net.kunmc.lab.customtnt.util.Util;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.TNTPrimed;
@@ -32,6 +33,8 @@ public class FloatingIslandTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         List<Block> floatTargets = new ArrayList<>(Util.sphereAround(tnt.getLocation(), config.radius.intValue()));
 
         new BukkitRunnable() {

@@ -4,6 +4,7 @@ import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.LGBTQConfig;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.plugin.Plugin;
@@ -40,6 +41,8 @@ public class LGBTQTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         int radius = config.radius.value();
         int n = 0;
         for (int x = -radius; x <= radius; x++) {

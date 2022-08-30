@@ -4,6 +4,7 @@ import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.SandFireworksConfig;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.FallingBlock;
@@ -54,6 +55,8 @@ public class SandFireWorksTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         Location origin = tnt.getLocation();
         World world = origin.getWorld();
 

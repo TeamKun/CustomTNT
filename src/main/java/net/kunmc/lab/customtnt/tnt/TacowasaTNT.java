@@ -3,6 +3,7 @@ package net.kunmc.lab.customtnt.tnt;
 import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.TacowasaConfig;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.plugin.Plugin;
 import xyz.haoshoku.nick.api.NickAPI;
@@ -29,6 +30,8 @@ public class TacowasaTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         Bukkit.getOnlinePlayers().stream()
                 .filter(x -> Math.abs(tnt.getLocation().distance(x.getLocation())) <= config.radius.value())
                 .forEach(x -> {

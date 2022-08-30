@@ -5,6 +5,7 @@ import net.kunmc.lab.customtnt.config.KoutanConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -97,6 +98,8 @@ public class KoutanTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         tnt.getLocation().getNearbyLivingEntities(config.radius.value()).forEach(x -> {
             EntityEquipment slot = x.getEquipment();
             if (slot != null) {

@@ -4,6 +4,7 @@ import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.SummonEnderDragonConfig;
 import net.minecraft.server.v1_16_R3.DragonControllerPhase;
 import net.minecraft.server.v1_16_R3.EntityEnderDragon;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEnderDragon;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
@@ -29,6 +30,8 @@ public class SummonEnderDragonTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         config.changeBaseLocationOnExplosion.ifTrue(() -> {
             config.enderDragonBaseLocation.setValueWithEvent(tnt.getLocation().toVector());
             config.saveConfigIfPresent();

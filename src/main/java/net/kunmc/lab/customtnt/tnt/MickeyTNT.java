@@ -12,6 +12,7 @@ import com.sk89q.worldedit.session.ClipboardHolder;
 import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.MickeyConfig;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.plugin.Plugin;
 
@@ -37,6 +38,8 @@ public class MickeyTNT extends CustomTNT {
 
     @Override
     protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         try (EditSession editSession = WorldEdit.getInstance().newEditSession(new BukkitWorld(tnt.getWorld()))) {
             InputStream mickeySchem = plugin.getResource("mickey.schem");
             ClipboardReader reader = BuiltInClipboardFormat.SPONGE_SCHEMATIC.getReader(mickeySchem);
