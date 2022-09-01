@@ -4,7 +4,10 @@ import net.kunmc.lab.customtnt.CustomTNT;
 import net.kunmc.lab.customtnt.config.TirnoConfig;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.*;
-import org.bukkit.entity.*;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -79,7 +82,18 @@ public class TirnoTNT extends CustomTNT {
                         }
                     }.runTaskTimerAsynchronously(plugin, 0, 4);
                 });
+
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        armorStand.remove();
+                    }
+                }.runTaskLater(plugin, 280 + tnt.getFuseTicks());
             });
+
+            Bukkit.getOnlinePlayers().stream()
+                    .filter(x -> Math.abs(x.getLocation().distance(tnt.getLocation())) < config.radius.value())
+                    .forEach(x -> x.getEquipment().setHelmet(tirnoHead));
         }
     }
 
@@ -88,24 +102,11 @@ public class TirnoTNT extends CustomTNT {
         Bukkit.getOnlinePlayers().stream()
                 .filter(x -> Math.abs(x.getLocation().distance(tnt.getLocation())) < config.radius.value())
                 .forEach(x -> {
-                    List<? extends Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
-                    Collections.shuffle(players);
-                    Player p = players.get(0);
-                    if (p == null) {
-                        return;
-                    }
-                    p.sendMessage(String.format("<%s> ちるのハッピーハッピー!", p.getName()));
-                    p.playSound(Sound.sound(NamespacedKey.fromString("tirno"), Sound.Source.AMBIENT, 1.0F, 1.0F));
+                    Bukkit.getOnlinePlayers().forEach(y -> {
+                        x.sendMessage(String.format("<%s> ちるのハッピーハッピー!", y.getName()));
+                    });
+                    x.playSound(Sound.sound(NamespacedKey.fromString("tirno"), Sound.Source.AMBIENT, 1.0F, 1.0F));
                 });
-
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                Bukkit.selectEntities(Bukkit.getConsoleSender(), "@e[type=armor_stand]").stream()
-                        .filter(x -> x.hasMetadata("customtnt-tirno"))
-                        .forEach(Entity::remove);
-            }
-        }.runTaskLater(plugin, 280);
     }
 
     @Override
