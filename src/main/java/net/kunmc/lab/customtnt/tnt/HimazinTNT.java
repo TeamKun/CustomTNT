@@ -7,10 +7,7 @@ import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Husk;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.TNTPrimed;
+import org.bukkit.entity.*;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -68,13 +65,19 @@ public class HimazinTNT extends CustomTNT {
         new BukkitRunnable() {
             @Override
             public void run() {
-                Bukkit.selectEntities(Bukkit.getConsoleSender(), "@e[type=husk]").stream()
+                List<Entity> himazins = Bukkit.selectEntities(Bukkit.getConsoleSender(), "@e[type=husk]").stream()
                         .filter(x -> x.customName() != null)
                         .filter(x -> x.customName() instanceof TextComponent)
                         .filter(x -> ((TextComponent) x.customName()).content().equals("H1maz1n"))
-                        .forEach(x -> {
-                            x.getWorld().playSound(x.getLocation(), "himazin_eedesune", 1.0F, 1.0F);
-                        });
+                        .collect(Collectors.toList());
+                if (himazins.isEmpty()) {
+                    cancel();
+                    return;
+                }
+
+                himazins.forEach(x -> {
+                    x.getWorld().playSound(x.getLocation(), "himazin_eedesune", 1.0F, 1.0F);
+                });
             }
         }.runTaskTimer(plugin, 120, 19);
     }
