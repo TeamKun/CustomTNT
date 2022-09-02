@@ -5,10 +5,10 @@ import net.kunmc.lab.configlib.value.StringValue;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-public class MickeyConfig extends BaseConfig {
+public class NatsuConfig extends BaseConfig {
     public final StringValue displayName = new StringValue("なつTNT");
 
-    public MickeyConfig(@NotNull Plugin plugin) {
+    public NatsuConfig(@NotNull Plugin plugin) {
         super(plugin);
     }
 }

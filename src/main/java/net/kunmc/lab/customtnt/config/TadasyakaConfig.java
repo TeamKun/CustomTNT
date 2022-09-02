@@ -6,11 +6,11 @@ import net.kunmc.lab.configlib.value.StringValue;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-public class FlameConfig extends BaseConfig {
-    public final IntegerValue radius = new IntegerValue(32);
-    public final StringValue displayName = new StringValue("ヒスイ転生TNT");
+public class TadasyakaConfig extends BaseConfig {
+    public final IntegerValue radius = new IntegerValue(10);
+    public final StringValue displayName = new StringValue("ただしゃかTNT");
 
-    public FlameConfig(@NotNull Plugin plugin) {
+    public TadasyakaConfig(@NotNull Plugin plugin) {
         super(plugin);
     }
 }

@@ -10,20 +10,19 @@ import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import net.kunmc.lab.customtnt.CustomTNT;
-import net.kunmc.lab.customtnt.config.FlameConfig;
+import net.kunmc.lab.customtnt.config.NatsuConfig;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.Sound;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.plugin.Plugin;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-public class FlameTNT extends CustomTNT {
-    private final FlameConfig config;
+public class NatsuTNT extends CustomTNT {
+    private final NatsuConfig config;
 
-    public FlameTNT(Plugin plugin, FlameConfig config) {
+    public NatsuTNT(Plugin plugin, NatsuConfig config) {
         super(plugin);
         this.config = config;
     }
@@ -35,14 +34,20 @@ public class FlameTNT extends CustomTNT {
 
     @Override
     protected void onTNTPrimed(TNTPrimed tnt) {
+    }
+
+    @Override
+    protected void onExplosionPrime(TNTPrimed tnt) {
+        tnt.getWorld().playSound(tnt.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+
         try (EditSession editSession = WorldEdit.getInstance().newEditSession(new BukkitWorld(tnt.getWorld()))) {
-            InputStream hisuiSchem = plugin.getResource("hisui.schem");
-            ClipboardReader reader = BuiltInClipboardFormat.SPONGE_SCHEMATIC.getReader(hisuiSchem);
+            InputStream mickeySchem = plugin.getResource("mickey.schem");
+            ClipboardReader reader = BuiltInClipboardFormat.SPONGE_SCHEMATIC.getReader(mickeySchem);
             ClipboardHolder clipboardHolder = new ClipboardHolder(reader.read());
 
             Location loc = tnt.getLocation();
             Operations.complete(clipboardHolder.createPaste(editSession)
-                    .to(BlockVector3.at(loc.getX(), loc.getY(), loc.getZ() + 32))
+                    .to(BlockVector3.at(loc.getX() + 26, loc.getY() + 40, loc.getZ()))
                     .build());
         } catch (IOException | WorldEditException e) {
             e.printStackTrace();
@@ -50,21 +55,7 @@ public class FlameTNT extends CustomTNT {
     }
 
     @Override
-    protected void onExplosionPrime(TNTPrimed tnt) {
-        int radius = config.radius.value();
-        for (int x = -radius; x <= radius; x++) {
-            for (int z = -radius; z <= radius; z++) {
-                Location loc = tnt.getLocation().add(x, 0, z);
-                int y = tnt.getWorld().getHighestBlockYAt(loc);
-                loc.setY(y + 1);
-                Block b = loc.getBlock();
-                b.setType(Material.FIRE);
-            }
-        }
-    }
-
-    @Override
     public String tabCompleteName() {
-        return "flame";
+        return "natsu";
     }
 }

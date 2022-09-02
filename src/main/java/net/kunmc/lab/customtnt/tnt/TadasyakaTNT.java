@@ -1,7 +1,7 @@
 package net.kunmc.lab.customtnt.tnt;
 
 import net.kunmc.lab.customtnt.CustomTNT;
-import net.kunmc.lab.customtnt.config.LGBTQConfig;
+import net.kunmc.lab.customtnt.config.TadasyakaConfig;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,8 +12,8 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LGBTQTNT extends CustomTNT {
-    private final LGBTQConfig config;
+public class TadasyakaTNT extends CustomTNT {
+    private final TadasyakaConfig config;
     private final List<Material> colorMaterials = new ArrayList<Material>() {{
         add(Material.PINK_WOOL);
         add(Material.RED_WOOL);
@@ -25,7 +25,7 @@ public class LGBTQTNT extends CustomTNT {
         add(Material.MAGENTA_WOOL);
     }};
 
-    public LGBTQTNT(Plugin plugin, LGBTQConfig config) {
+    public TadasyakaTNT(Plugin plugin, TadasyakaConfig config) {
         super(plugin);
         this.config = config;
     }
@@ -60,6 +60,6 @@ public class LGBTQTNT extends CustomTNT {
 
     @Override
     public String tabCompleteName() {
-        return "lgbtq";
+        return "tadasyaka";
     }
 }

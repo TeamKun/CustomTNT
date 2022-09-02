@@ -1,15 +1,15 @@
 package net.kunmc.lab.customtnt.tnt;
 
 import net.kunmc.lab.customtnt.CustomTNT;
-import net.kunmc.lab.customtnt.config.KantasukeKakikamaVoiceConfig;
+import net.kunmc.lab.customtnt.config.ReinoareUron1oConfig;
 import org.bukkit.World;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.plugin.Plugin;
 
-public class KantasukeKakikamaVoiceTNT extends CustomTNT {
-    private final KantasukeKakikamaVoiceConfig config;
+public class ReinoareUrn1oTNT extends CustomTNT {
+    private final ReinoareUron1oConfig config;
 
-    public KantasukeKakikamaVoiceTNT(Plugin plugin, KantasukeKakikamaVoiceConfig config) {
+    public ReinoareUrn1oTNT(Plugin plugin, ReinoareUron1oConfig config) {
         super(plugin);
         this.config = config;
     }
@@ -31,6 +31,6 @@ public class KantasukeKakikamaVoiceTNT extends CustomTNT {
 
     @Override
     public String tabCompleteName() {
-        return "kantasukeKakikamaVoice";
+        return "reinoareUrn1o";
     }
 }

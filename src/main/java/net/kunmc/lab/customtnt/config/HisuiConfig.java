@@ -6,11 +6,11 @@ import net.kunmc.lab.configlib.value.StringValue;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-public class LGBTQConfig extends BaseConfig {
-    public final IntegerValue radius = new IntegerValue(10);
-    public final StringValue displayName = new StringValue("ただしゃかTNT");
+public class HisuiConfig extends BaseConfig {
+    public final IntegerValue radius = new IntegerValue(32);
+    public final StringValue displayName = new StringValue("ヒスイ転生TNT");
 
-    public LGBTQConfig(@NotNull Plugin plugin) {
+    public HisuiConfig(@NotNull Plugin plugin) {
         super(plugin);
     }
 }
