@@ -56,8 +56,12 @@ public class HisuiTNT extends CustomTNT {
             for (int z = -radius; z <= radius; z++) {
                 Location loc = tnt.getLocation().add(x, 0, z);
                 int y = tnt.getWorld().getHighestBlockYAt(loc);
-                loc.setY(y + 1);
-                Block b = loc.getBlock();
+                loc.setY(y);
+
+                if (!loc.getBlock().getType().name().endsWith("WOOL")) {
+                    loc.getBlock().setType(Material.NETHERRACK);
+                }
+                Block b = loc.add(0, 1, 0).getBlock();
                 b.setType(Material.FIRE);
             }
         }
