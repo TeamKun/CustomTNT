@@ -63,6 +63,7 @@ public class KaikingTNT extends CustomTNT {
                     Bukkit.getOnlinePlayers().stream()
                             .filter(x -> x.getGameMode() != GameMode.CREATIVE)
                             .filter(x -> x.getGameMode() != GameMode.SPECTATOR)
+                            .filter(x -> x.getWorld().equals(pigZombie.getWorld()))
                             .min(Comparator.comparingDouble(x -> x.getLocation().distance(pigZombie.getLocation())))
                             .ifPresent(pigZombie::setTarget);
                 };
